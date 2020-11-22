@@ -3,7 +3,7 @@ import { Background, Container, Logo, ButtonLink } from './styles/header';
 import {Link as ReactRouterLink} from 'react-router-dom';
 
 export default function Header({ children, bg = true, ...restProps }) {
-    return bg ? <Background {...restProps}>{children}</Background>:{children}
+    return bg ? <Background {...restProps}>{children}</Background>:(children)
 }
 
 Header.Container = function HeaderContainer({ children, ...restProps }) {
