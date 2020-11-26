@@ -15,7 +15,7 @@ export default function BrowseContainer({slides}) {
         }, 2000)
     }, [profile.displayName])
     return profile.displayName ? (
-            loading ? (<Loading src={user.photoURL} />) : <Loading.ReleaseBody /> 
+            loading ? (<Loading src={user.photoURL} />) : (<Loading.ReleaseBody /> )
         ) : (
             <SelectProfileContainer user={user} setProfile={setProfile} />
         )
