@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import {Container, Group, Title, SubTitle, Text, Meta, Item, Feature, FeatureTitle, FeatureText, FeatureClose, Maturity, Content} from './styles/card';
+import { Container, Group, Title, SubTitle, Text, Meta, Item, Entities, Feature, FeatureTitle, FeatureText, FeatureClose, Maturity, Content } from './styles/card';
 
 export const FeatureContext = createContext();
 
@@ -13,6 +13,10 @@ export default function Card({ children, ...restProps }) {
         </FeatureContext.Provider>
     )
 }
+
+Card.Entities = function CardEntities({ children, ...restProps }) {
+    return <Entities {...restProps}>{children}</Entities>;
+};
 
 Card.Group = function CardGroup({ children, ...restProps }) {
     return <Group {...restProps}>{children}</Group>;
