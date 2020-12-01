@@ -3,10 +3,12 @@ import SelectProfileContainer from './profile';
 import { FirebaseContext } from '../context/firebase';
 import { Loading } from '../components';
 import { Header } from '../components';
+import { Card } from '../components';
 import * as ROUTES from '../constants/routes';
 
 
 export default function BrowseContainer({ slides }) {
+    const [category, setCategory] = useState('series')
     const [searchTerm, setSearchTerm] = useState('');
     const [profile, setProfile] = useState({});
     const [loading, setLoading] = useState(true);
@@ -58,6 +60,10 @@ export default function BrowseContainer({ slides }) {
                     <Header.PlayButton>Play</Header.PlayButton>
                 </Header.Feature>
             </Header>
+
+            <Card.Group>
+                
+            </Card.Group>
         </>
     ) : (
             <SelectProfileContainer user={user} setProfile={setProfile} />
