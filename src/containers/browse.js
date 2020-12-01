@@ -8,7 +8,8 @@ import * as ROUTES from '../constants/routes';
 
 
 export default function BrowseContainer({ slides }) {
-    const [category, setCategory] = useState('series')
+    const [category, setCategory] = useState('series');
+    const [slideRows, setSlideRows] = useState('')
     const [searchTerm, setSearchTerm] = useState('');
     const [profile, setProfile] = useState({});
     const [loading, setLoading] = useState(true);
@@ -19,7 +20,11 @@ export default function BrowseContainer({ slides }) {
         setTimeout(() => {
             setLoading(false);
         }, 2000)
-    }, [profile.displayName])
+    }, [profile.displayName]);
+
+    useEffect(() => {
+        setSlideRows(slides[category]);
+    }, [slides, category]);
 
     return profile.displayName ? (
 
@@ -34,8 +39,18 @@ export default function BrowseContainer({ slides }) {
                 <Header.Frame>
                     <Header.Group>
                         <Header.Logo to={ROUTES.HOME} alt="Netflix" src="/images/logo.svg" />
-                        <Header.TextLink>Series</Header.TextLink>
-                        <Header.TextLink>Films</Header.TextLink>
+                        <Header.TextLink
+                            active={category === 'series' ? 'true' : 'false'}
+                            onClick={() => setCategory('series')} //it will re render useEffect and it will change slideRows
+                        >
+                            Series
+                        </Header.TextLink>
+                        <Header.TextLink
+                            active={category === 'films' ? 'true' : 'false'}
+                            onClick={() => setCategory('films')} //it will re render useEffect and it will change slideRows
+                        >
+                            Films
+                        </Header.TextLink>
                     </Header.Group>
                     <Header.Group>
                         <Header.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
@@ -62,7 +77,25 @@ export default function BrowseContainer({ slides }) {
             </Header>
 
             <Card.Group>
-                
+                {slideRows.map((slideItem) => (
+                    <Card key={`${category}-${slideItem.title.toLowerCase()}`}>
+                        <Card.Title>{slideItem.title}</Card.Title>
+                        <Card.Entities>
+                            {slideItem.data.map((item) => 
+                                {console.log(item);
+                                /*(<Card.Item key={item.docId} item={item}>
+                                    {console.log(item.docId, category, item.slug, item.title)}
+                                    <Card.Image src={`/images/${category}/${item.genre}/${item.slug}/small.jpg`} />
+                                    <Card.Meta>
+                                        <Card.SubTitle>{item.title}</Card.SubTitle>
+                                        <Card.Text>{item.description}</Card.Text>
+                                    </Card.Meta>
+                            </Card.Item>)*/}
+                            )}
+                        </Card.Entities>
+                        
+                    </Card>
+                ))}
             </Card.Group>
         </>
     ) : (
