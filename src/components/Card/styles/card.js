@@ -175,3 +175,13 @@ export const Maturity = styled.div`
   margin-right: 10px;
   font-size: 12px;
 `;
+
+export const Image = styled.img`
+  border: 0;
+  width: 100%;
+  max-width: 305px;
+  cursor: pointer;
+  height: auto;
+  padding: 0;
+  margin: 0;
+`;

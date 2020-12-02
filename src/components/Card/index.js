@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import { Container, Group, Title, SubTitle, Text, Meta, Item, Entities, Feature, FeatureTitle, FeatureText, FeatureClose, Maturity, Content } from './styles/card';
+import { Container, Group, Title, SubTitle, Text, Meta, Item, Entities, Feature, FeatureTitle, FeatureText, FeatureClose, Maturity, Content, Image } from './styles/card';
 
 export const FeatureContext = createContext();
 
@@ -54,7 +54,9 @@ Card.Item = function CardItem({ item, children, ...restProps }) {
     );
 };
 
-
+Card.Image = function CardImage({ ...restProps }) {
+    return <Image {...restProps} />;
+  };
 
 Card.Feature = function CardFeature({ children, category, ...restProps }) {
     const { showFeature, itemFeature, setShowFeature } = useContext(FeatureContext);
